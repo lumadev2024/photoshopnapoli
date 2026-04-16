@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;1,600;1,700&family=Barlow:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── CSS Variables ─────────────────────────────────────────────── */
+:root {
+  --pf-bg:      #1c1c1c;
+  --pf-bg2:     #242424;
+  --pf-card:    #2a2a2a;
+  --pf-border:  #3a3a3a;
+  --pf-muted:   #555555;
+  --pf-warm:    #999999;
+  --pf-text:    #d8d8d8;
+  --pf-white:   #f0f0f0;
+  --pf-red:     #cc1111;
+  --pf-redlt:   #e52222;
+  --pf-reddark: #a00d0d;
+}
+
+/* ─── Base ──────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--pf-bg);
+  color: var(--pf-text);
+  font-family: "Barlow", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+/* ─── Selection ─────────────────────────────────────────────────── */
+::selection {
+  background: var(--pf-red);
+  color: #ffffff;
+}
+
+/* ─── Scrollbar ─────────────────────────────────────────────────── */
+::-webkit-scrollbar        { width: 5px; }
+::-webkit-scrollbar-track  { background: var(--pf-bg); }
+::-webkit-scrollbar-thumb  { background: var(--pf-border); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: var(--pf-muted); }
+
+/* ─── Utility layer ─────────────────────────────────────────────── */
+@layer utilities {
+
+  /* Sezione divisore */
+  .section-divider {
+    border-top: 1px solid var(--pf-border);
+  }
+
+  /* Label uppercase rossa */
+  .section-label {
+    @apply block text-2xs font-bold tracking-widest-3 uppercase text-pf-red mb-3;
+  }
+
+  /* Titolo sezione — Barlow Condensed italic */
+  .section-title {
+    font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+    font-weight: 700;
+    font-style: italic;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: var(--pf-white);
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    line-height: 1.05;
+  }
+
+  /* Bottone rosso pieno */
+  .btn-red {
+    @apply inline-flex items-center gap-2 px-5 py-2.5
+           bg-pf-red text-white font-body text-xs font-semibold
+           tracking-widest uppercase transition-colors duration-200;
+  }
+  .btn-red:hover { background: var(--pf-redlt); }
+
+  /* Bottone outline rosso */
+  .btn-outline {
+    @apply inline-flex items-center gap-2 px-5 py-2.5
+           border border-pf-red text-pf-red font-body text-xs font-semibold
+           tracking-widest uppercase bg-transparent transition-all duration-200;
+  }
+  .btn-outline:hover {
+    background: var(--pf-red);
+    color: #fff;
+  }
+
+  /* Card generica */
+  .pf-card {
+    background: var(--pf-card);
+    border: 1px solid var(--pf-border);
+  }
+
+  /* Bordo sinistro rosso (accento) */
+  .border-accent {
+    border-left: 2px solid var(--pf-red);
+  }
+
+  /* Testo condensato — per logo e titoli */
+  .font-title {
+    font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+  }
+}
+
+/* ─── Animazioni globali ────────────────────────────────────────── */
+@keyframes pfBounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(8px); }
+}
+@keyframes pfPulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.35; }
+}
+
+.anim-bounce { animation: pfBounce 1.6s ease-in-out infinite; }
+.anim-pulse  { animation: pfPulse  2s ease-in-out infinite; }
